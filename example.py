@@ -37,8 +37,8 @@ states = hangar.get_states()
 for i in range(1000):
 
     # Control drones to all fly to same location facing north!
-    target = [(-21.0, 11.0, np.pi, 7.0)] * 4
-    hangar.set_all_setpoints(target)
+    setpoint = [(-21.0, 11.0, np.pi, 7.0)] * 4
+    hangar.set_all_setpoints(setpoint)
 
     # Advance simulation state
     states = hangar.step()
