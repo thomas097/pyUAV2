@@ -4,10 +4,14 @@ from PyFlyt.core import Aviary, loadOBJ, obj_collision, obj_visual
 
 class Environment:
 
-    DRONE_MODELS = ["primitive_drone", "cf2x"]
+    DRONE_MODELS = [
+        "primitive_drone", 
+        "cf2x"
+        ]
+    
     CONTROL_MODES = {
-        "positional": 7, # inputs = [x, y, yaw, z]
-        "velocity": 6    # inputs = [vx, vy, vr, vz]
+        "positional": 7, # [x, y, yaw, z]
+        "velocity": 6    # [vx, vy, vr, vz]
     }
 
     def __init__(
