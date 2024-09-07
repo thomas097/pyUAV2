@@ -74,7 +74,7 @@ class PerspectiveCamera:
             shadow=self._shadows,
             lightDirection=[1, 1, 1],
             physicsClientId=self._client_id,
-            renderer=pyb.ER_TINY_RENDERER,
+            renderer=pyb.ER_BULLET_HARDWARE_OPENGL,
             flags=pyb.ER_NO_SEGMENTATION_MASK 
             )
         

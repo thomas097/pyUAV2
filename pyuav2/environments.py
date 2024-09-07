@@ -2,7 +2,7 @@ import numpy as np
 from PyFlyt.core import Aviary, loadOBJ, obj_collision, obj_visual
 
 
-class BaseEnvironment:
+class Environment:
 
     DRONE_MODELS = ["primitive_drone", "cf2x"]
     CONTROL_MODES = {
@@ -108,7 +108,7 @@ class BaseEnvironment:
             setpoint (np.ndarray): Setpoint for given UAV.
         """
         assert 0 <= idx < len(self._env.drones)
-        self._env.set_setpoints(index=idx, setpoint=np.array(setpoint, dtype=np.float32))
+        self._env.set_setpoint(index=idx, setpoint=np.array(setpoint, dtype=np.float32))
 
     def get_states(self) -> list:
         return self._env.all_states

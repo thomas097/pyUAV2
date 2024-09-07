@@ -1,8 +1,8 @@
 """Spawns three drones, then sets all drones to have different control looprates."""
 import cv2
 import numpy as np
-from pyuav.rendering import PerspectiveCamera
-from pyuav.environments import BaseEnvironment
+from pyuav2.rendering import PerspectiveCamera
+from pyuav2.environments import Environment
 
 # Starting positions of 4 drones
 start_pos = np.array([
@@ -13,7 +13,7 @@ start_pos = np.array([
     ])
 
 # Create hangar environment with Boeing 787
-hangar = BaseEnvironment(
+hangar = Environment(
     num_drones=4,
     start_pos=start_pos,
     start_rot=np.zeros_like(start_pos), # start perfectly level (!)
@@ -37,14 +37,15 @@ states = hangar.get_states()
 for i in range(1000):
 
     # Control drones to all fly to same location facing north!
-    setpoint = [(-21.0, 11.0, np.pi, 7.0)] * 4
+    setpoint = [(x, y, 0, z + 5) for x, y, z in start_pos]
     hangar.set_all_setpoints(setpoint)
 
     # Advance simulation state
     states = hangar.step()
 
     # Visualize
-    rgb = camera.get_image()
+    if i % 5 == 0:
+        rgb = camera.get_image()
 
-    cv2.imshow('', rgb)
-    cv2.waitKey(1)
+        cv2.imshow('', rgb)
+        cv2.waitKey(1)
